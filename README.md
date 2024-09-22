@@ -16,8 +16,8 @@
   
 # Instalação do projeto Backend (Node.js)
   **Clonar o repositório**
-  git clone https://github.com/EduardoTaz/20240916API-WEB-AREA-NODEJS.git
-  cd 20240916API-WEB-AREA-NODEJS-1.0.0
+  * git clone https://github.com/EduardoTaz/20240916API-WEB-AREA-NODEJS.git
+  * cd 20240916API-WEB-AREA-NODEJS-1.0.0
 
   **Instalar as dependências**
   * npm install
