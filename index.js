@@ -16,40 +16,42 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.get('/area', (req, res, next) => {
     try {
-        const {direita, esquerda, cima, baixo} = req.query; // esse sao os parametros da url
+        const {lado1, lado2, lado3, lado4} = req.query; // esse sao os parametros da url
 
  
 
         // Verifica se todos os parâmetros estão presentes
-        if (direita === undefined || esquerda === undefined || cima == undefined || baixo == undefined) {
+        if (lado1 === undefined || lado2 === undefined || lado3 == undefined || lado4 == undefined) { 
             throw new Error('Parâmetros insuficientes!');
         }
 
         // Converte os parâmetros para números
-        const di = parseFloat(direita);
-        const es = parseFloat(esquerda);2
-        const ci = parseFloat(cima);
-        const ba = parseFloat(baixo);
+        const l1 = parseFloat(lado1);
+        const l2 = parseFloat(lado2);
+        const l3 = parseFloat(lado3);
+        const l4 = parseFloat(lado4);
 
 
         // Verifica se os parâmetros são números válidos
-        if (isNaN(direita) || isNaN(esquerda) || isNaN(cima) || isNaN(baixo)) {
+        if (isNaN(lado1) || isNaN(lado2) || isNaN(lado3) || isNaN(lado4)) {
             throw new Error('Parâmetros inválidos!');
         }
 
-        
+        //calculo de area
         let area;
-        area = di * ba;
+        area = l2 * l3;
 
         let result;
-        if (di == es && es == ci && ci == ba) {
-            result = `Os lados são iguais, portanto é um quadrado de area ${area}`
-        } else if(ba == ci && di == es) {
-            result = `Os lados são diferentes, portanto é um retângulo de área ${area}`
+        //verifica se é um quadrado, um retangulo ou desocnecido
+        if (l1 === l2 && l2 === l3 && l3 === l4) {
+            result = `Os quatros lados são iguis portanto é um quadrado de área ${area}`;
+        } else if (l1 === l2 & l3 === l4) {
+            result = `Dois lados são diferentes dos outros dois, portanto é um retângulo de área ${area}`;
         } else {
-            result = `Figura desconhecida`
+            throw new Error('Figura desconhecida');
         }
         
+
 
         res.json({ result });
     } catch (error) {
@@ -65,5 +67,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-    console.log(`API rodando em http://172.16.7.1:${port}`);
+    console.log(`API rodando em http://192.168.0.22:${port}`); 
 });
